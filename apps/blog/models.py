@@ -2,6 +2,7 @@ import uuid
 from django.db import models
 from django.utils import timezone
 from django.utils.text import slugify
+from django_ckeditor_5.widgets import CKEditor5Widget
 from django_ckeditor_5.fields import CKEditor5Field
 
 
@@ -45,7 +46,7 @@ class Post(models.Model):
     id = models.UUIDField(primary_key=True, default=uuid.uuid4, editable=False)
     title = models.CharField(max_length=128)
     description = models.CharField(max_length=256)
-    content = CKEditor5Field('Content', config_name='default')
+    content = CKEditor5Field('Content', config_name='default')  # Corrección aquí
     thumbnail = models.ImageField(upload_to=blog_thumbnail_directory, blank=True, null=True)
     keywords = models.CharField(max_length=128)
     slug = models.SlugField(max_length=128, unique=True)

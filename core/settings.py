@@ -43,17 +43,25 @@ THIRD_PARTY_APPS = [
     'channels_redis',
     'django_ckeditor_5',
 
+
 ]
 
 INSTALLED_APPS = DJANGO_APPS + PROJECT_APPS + THIRD_PARTY_APPS
 
 CKEDITOR_5_CONFIGS = {
-    'default': {
-        'toolbar': 'full',
-        'autoParagraph': False,
+    "default": {
+        "toolbar": [
+            "heading", "|",
+            "bold", "italic", "underline", "link", "|",
+            "bulletedList", "numberedList", "blockQuote", "|",
+            "insertTable", "imageUpload", "mediaEmbed", "|",
+            "undo", "redo"
+        ],
+        "height": "400px",
+        "width": "100%",
+        "language": "es",
     }
 }
-
 CKEDITOR_UPLOAD_PATH = "media/"
 
 MIDDLEWARE = [

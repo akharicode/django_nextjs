@@ -28,25 +28,19 @@ class CategoryAdmin(admin.ModelAdmin):
 
 # --- Post ---
 class PostAdminForm(forms.ModelForm):
-    # Puedes declararlo así...
-    content = forms.CharField(widget=CKEditor5Widget(config_name="default"))
-
     class Meta:
         model = Post
-        fields = "__all__"
-        # ...o así (ambas sirven; no dupliques):
+        fields = '__all__'
         widgets = {
-            "description": forms.Textarea(attrs={"rows": 3, "placeholder": "Resumen corto del post…"}),
-            "keywords": forms.TextInput(attrs={"placeholder": "django, python, tutorial"}),
-            # Si prefieres setear CKEditor aquí en vez de arriba, descomenta:
-            # "content": CKEditor5Widget(config_name="default"),
+            'content': CKEditor5Widget(
+                config_name='default',
+                attrs={'class': 'django_ckeditor_5'},
+            )
         }
 
 @admin.register(Post)
 class PostAdmin(admin.ModelAdmin):
-    formfield_overrides = {
-        CKEditor5Field: {"widget": CKEditor5Widget(config_name="default")}
-    }
+    form = PostAdminForm
     list_display = ("title", "category", "status", "created_at", "updated_at")
     search_fields = ("title", "description", "content", "keywords", "slug")
     prepopulated_fields = {"slug": ("title",)}

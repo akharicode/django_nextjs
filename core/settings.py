@@ -49,20 +49,14 @@ THIRD_PARTY_APPS = [
 INSTALLED_APPS = DJANGO_APPS + PROJECT_APPS + THIRD_PARTY_APPS
 
 CKEDITOR_5_CONFIGS = {
-    "default": {
-        "toolbar": [
-            "heading", "|",
-            "bold", "italic", "underline", "link", "|",
-            "bulletedList", "numberedList", "blockQuote", "|",
-            "insertTable", "imageUpload", "mediaEmbed", "|",
-            "undo", "redo"
-        ],
-        "height": "400px",
-        "width": "100%",
-        "language": "es",
+    'default': {
+        'toolbar': ['heading', '|', 'bold', 'italic', 'link',
+                   'bulletedList', 'numberedList', 'blockQuote', 'imageUpload', ],
+        'height': '300px',
     }
 }
-CKEDITOR_UPLOAD_PATH = "media/"
+CKEDITOR_5_FILE_STORAGE = "django.core.files.storage.FileSystemStorage"
+CKEDITOR_5_UPLOAD_PATH = "media/"
 
 MIDDLEWARE = [
     'django.middleware.security.SecurityMiddleware',
